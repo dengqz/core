@@ -12,6 +12,19 @@ public class MyArraryList<T> implements Iterable<T> {
     private static final int DEFAULT_CAPACITY = 10;
     private int theSize;
     private T [] theItems;
+
+    public MyArraryList()
+    {
+        doClear();
+    }
+
+    public void clear(){
+        doClear();
+    }
+
+    private void doClear(){
+        theSize=0;
+    }
     public Iterator<T> iterator() {
         return null;
     }
