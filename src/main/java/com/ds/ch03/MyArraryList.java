@@ -25,6 +25,12 @@ public class MyArraryList<T> implements Iterable<T> {
     private void doClear(){
         theSize=0;
     }
+    public int size(){
+        return theSize;
+    }
+    public boolean isEmpty(){
+        return size()==0;
+    }
     public Iterator<T> iterator() {
         return null;
     }
