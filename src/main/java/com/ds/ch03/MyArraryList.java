@@ -63,8 +63,55 @@ public class MyArraryList<T> implements Iterable<T> {
         for(int i = 0; i < size(); i++)
             theItems[i] = old[i];
     }
-    public Iterator<T> iterator() {
-        return null;
+    public boolean add(T x)
+    {
+        add(size(),x);
+        return true;
+    }
+    public void add(int idx,T x)
+    {
+        if(theItems.length == size())
+            ensureCapacity(size() * 2 + 1);
+        for(int i = theSize; i > idx;i--)
+            theItems[i] = theItems[i-1];
+        theItems[idx] = x;
+
+        theSize++;
+    }
+
+    public T remove(int idx)
+    {
+        T removeItem = theItems[idx];
+        for(int i = idx; i < size() - 1; i++)
+            theItems[i] = theItems[i+1];
+        theSize--;
+        return removeItem;
+    }
+
+    public java.util.Iterator<T> iterator()
+    {
+        return new ArrayListIterator();
+    }
+
+    private class ArrayListIterator implements  java.util.Iterator<T>
+    {
+        private int current = 0;
+
+        public boolean hasNext()
+        {
+            return current < size();
+        }
+
+        public T next()
+        {
+            if(!hasNext())
+                throw new java.util.NoSuchElementException();
+            return theItems[current++];
+        }
+        public void remove()
+        {
+            MyArraryList.this.remove(--current);
+        }
     }
 
 }
